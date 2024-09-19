@@ -9,6 +9,8 @@ In this project, we will develop an ETL pipeline leveraging the Spotify API on A
   - **Snowflake:** It is a cloud-based data warehousing platform that enables organizations to store, manage, and analyze large volumes of data. It allows users to run queries and perform data analysis quickly and efficiently, all while providing seamless scalability and support for diverse data types.
 ## Project Execution Flow
 Extracting Data from Spotify API -> Trigger Lambda Function (every 5 hour) -> Run extract code -> Store raw data in S3 -> Trigger transformation function -> Transform data -> Load into Snowflake -> Run Queries on top of it.
+## Architecture
+![Architecture Diagram](https://github.com/Vinay-Sapare/ETL_USING_AWS/blob/main/etl_using_aws_architecture.png)
 
 ## Process Flow
   - **Extracting the data from Spotify API:** Extract the unstructured data from Spotify's API using proper authentication methods for further processing.
