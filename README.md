@@ -1,19 +1,16 @@
 # ETL USING AWS
-### Introduction
+
+## Introduction
 In this project, we will develop an ETL pipeline leveraging the Spotify API on AWS. Our goal is to extract data from the Spotify API, transform it into a suitable format, and then load it into a Snowflake data warehouse for analysis.
-
-### Services Used
-
+## Services Used
   - **S3 (Simple Storage Service):** It is a cloud storage solution that allows to store and retrieve any amount of data from anywhere on the web. It’s designed to be highly scalable, secure, and easy to use, making it ideal for storing files, backups, and data for applications.
   - **AWS Lambda:** AWS Lambda is a serverless computing service that allows to run code in response to events without managing servers. Lambda automatically handles the execution, scaling, and infrastructure management, enabling you to focus on building applications instead of worrying about the underlying infrastructure.
   - **Cloud Watch:** Amazon Cloud Watch is a monitoring service for AWS resources and the applications you run on them. You can use Cloud Watch to collect and track metrics, collect and monitor log files and for setting alarms.
   - **Snowflake:** It is a cloud-based data warehousing platform that enables organizations to store, manage, and analyze large volumes of data. It allows users to run queries and perform data analysis quickly and efficiently, all while providing seamless scalability and support for diverse data types.
-
-### Project Execution Flow
-
+## Project Execution Flow
 Extracting Data from Spotify API -> Trigger Lambda Function (every 5 hour) -> Run extract code -> Store raw data in S3 -> Trigger transformation function -> Transform data -> Load into Snowflake -> Run Queries on top of it.
 
-### Process Flow
+## Process Flow
   - **Extracting the data from Spotify API:** Extract the unstructured data from Spotify's API using proper authentication methods for further processing.
   - **Spotify API Integration:** Configure the Spotify API to retrieve albums, artists, and tracks, and then save the raw data to the data/raw/ directory. This process ensures that the data is collected accurately for subsequent processing.
   - **Deploy code to AWS Lambda:** Develop and deploy a Lambda function that utilizes Spotipy and Boto3 to extract data from Spotify and store it in an S3 bucket, automating the data extraction process in the cloud.
@@ -22,7 +19,7 @@ Extracting Data from Spotify API -> Trigger Lambda Function (every 5 hour) -> Ru
   - **Store Files on S3:** Structure raw and processed data in organized S3 directories (raw_data/ and processed_data/) to ensure clear version control and easy access. Set up the necessary permissions for secure data storage.
   - **Build analytics using Snowflake:** Set up a Snowflake integration to catalog the S3 data and enable SQL-based querying. This facilitates efficient analytics and reporting on the processed data.
 
-### Extraction Code
+## Extraction Code
 ```
 import json
 import os
@@ -59,7 +56,7 @@ def lambda_handler(event, context):
 
 ```
 
-### Transformation Code
+## Transformation Code
 ```
 import json
 import boto3
@@ -169,7 +166,7 @@ def lambda_handler(event, context):
         s3_resource.Object(Bucket, key).delete()
 ```
 
-### Load Data into Snowflake Data warehouse
+## Load Data into Snowflake Data warehouse
 ```
 #create a database 
 CREATE DATABASE spotify_data;
@@ -232,7 +229,7 @@ FILE_FORMAT=(FORMAT_NAME='csv_format')
 
 ```
 
-### Conclusion
+## Conclusion
 
 This project establishes a comprehensive, automated data pipeline that integrates the Spotify API, AWS Lambda, and S3 to facilitate efficient data extraction, transformation, and storage. By leveraging Snowflake for data warehousing, it empowers robust analytics and querying capabilities for the processed data, enabling insightful decision-making and enhanced data-driven strategies.
 
